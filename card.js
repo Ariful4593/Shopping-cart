@@ -39,16 +39,36 @@ function summary(){
     var price = parseFloat(document.getElementById("price").innerText);
     var price1 = parseFloat(document.getElementById("price1").innerText);
     var tax = parseFloat(document.getElementById("tax").innerText);
+    var total = parseFloat(document.getElementById("total").innerText);
 
-    var subtotal = price + price1;
-    var total = price + price1 + tax;
-    document.getElementById("subTotal").innerHTML = subtotal;
-    document.getElementById("total").innerHTML = total;
+    var subTotal = price + price1;
+    if(subTotal < 1000)
+    {
+        tax = 0;
+        document.getElementById("tax").innerHTML = tax;
+    }
+    else if(subTotal >= 1000 && subTotal <5000)
+    {
+        tax = 10;
+        document.getElementById("tax").innerHTML = tax;
+    }
+    else if(subTotal >= 5000 && subTotal <10000)
+    {
+        tax = 15;
+        document.getElementById("tax").innerHTML = tax;
+    }else if(subTotal >= 10000)
+    {
+        tax = 20;
+        document.getElementById("tax").innerHTML = tax;
+    }
+    document.getElementById("total").innerHTML = subTotal + tax;
+    document.getElementById("subTotal").innerHTML = subTotal
     const checkOut = document.getElementById("checkOut");
 checkOut.addEventListener("click", function(){
     alert("Your order Submitted")
 })
 }
+
 
 function removeArea(removeSelect, deleteItem){
     var area = document.getElementById(removeSelect);
